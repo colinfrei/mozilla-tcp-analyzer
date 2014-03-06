@@ -1,0 +1,20 @@
+spreadsheet:
+    # To get this, go to https://developers.google.com/oauthplayground
+    # and authorize the Spreadsheets Feed API
+    # You'll be prompted to log in/choose an account and will then see an authorization code.
+    # This is NOT WHAT YOU WANT :)
+    # Click on the blue 'Exchange authorizationc ode for tokens' button
+    # Copy the 'access token' that's returned
+    googleAccessKey: reallyLongString
+    worksheetUrl: https://spreadsheets.google.com/feeds/worksheets/tM_34tXriN5M8519WYzaIXg/private/full
+
+# Go to https://github.com/settings/applications
+# and click on 'Generate new token'
+# Copy the value that's returned here
+githubAuthToken: 1234567890abcdefabcdefabcdef123456789012
+
+bugzilla:
+    # The value of the "Bugzilla_login" cookie
+    userId: 12345
+    # The value of the "Bugzilla_logincookie" cookie
+    cookie: abcDEF123
