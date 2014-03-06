@@ -14,5 +14,6 @@ $app->register(new \Cilex\Provider\GoogleSpreadsheetServiceProvider());
 // Add commands
 $app->command(new \Cilex\Command\BugzillaCountCommand());
 $app->command(new \Cilex\Command\GithubScoreCommand());
+$app->command(new \Cilex\Command\VouchedMozilliansCommand());
 
 $app->run();

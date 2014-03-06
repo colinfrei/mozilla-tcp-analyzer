@@ -18,3 +18,7 @@ bugzilla:
     userId: 12345
     # The value of the "Bugzilla_logincookie" cookie
     cookie: abcDEF123
+
+mozillians:
+    apiAppName: Test
+    apiKey: abcd1234
