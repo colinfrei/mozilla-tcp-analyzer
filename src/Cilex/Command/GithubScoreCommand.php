@@ -89,7 +89,7 @@ class GithubScoreCommand extends Command
         }
 
         $githubPosition = strpos($input, 'github.com');
-        if (false!== $githubPosition) {
+        if (false !== $githubPosition) {
             $input = substr($input, $githubPosition+11);
             $input = rtrim($input, '/');
         }
