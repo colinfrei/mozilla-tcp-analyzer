@@ -67,10 +67,23 @@ class VouchedMozilliansCommand extends Command
             return '';
         }
 
-        $mozillianUserPagePath = 'https://mozillians.org/u/';
-        if (substr($input, 0, strlen($mozillianUserPagePath)) == $mozillianUserPagePath) {
-            $input = substr($input, strlen($mozillianUserPagePath));
-            $input = rtrim($input, '/');
+        $urlParts = parse_url($input);
+
+        if ($urlParts['host'] == 'mozillians.org') {
+            $pathParts = explode('/', $urlParts['path']);
+
+            $useNextPart = false;
+            foreach ($pathParts as $dir) {
+                if ($useNextPart) {
+                    $input = $dir;
+
+                    break;
+                }
+
+                if ($dir == 'u') {
+                    $useNextPart = true;
+                }
+            }
         }
 
         return $input;
