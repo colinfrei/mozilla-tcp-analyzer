@@ -15,7 +15,8 @@ class VouchedMozilliansCommand extends Command
             ->setName('colinfrei:tcp:vouched-mozillians')
             ->setDescription('Check what users are vouched mozillians')
             ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
-            ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the github account url', 'AE');
+            ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the github account url', 'AE')
+            ->addOption('offset', null, InputOption::VALUE_REQUIRED, 'On what row (not id) to start', 2);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -26,7 +27,7 @@ class VouchedMozilliansCommand extends Command
         $mozillianApiUrl = 'https://mozillians.org/api/v1/users/?app_name=' . $config['apiAppName'] . '&app_key=' . $config['apiKey'];
 
         $count = 0;
-        for ($i = 1; $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
+        for ($i = $input->getOption('offset'); $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
             $cell = $spreadSheet['cellFeed']->findCell($input->getOption('column') . $i);
 
             $userName = '';

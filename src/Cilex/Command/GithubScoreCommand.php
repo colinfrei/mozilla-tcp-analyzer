@@ -17,7 +17,14 @@ class GithubScoreCommand extends Command
             ->setDescription('Get the number of participations a user made in mozilla github repos')
             ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
             ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the github account url', 'AG')
-            ->addOption('organisation', 'o', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'What github organisations should be searched for contributions?', array('mozilla', 'mozilla-b2g'));
+            ->addOption('offset', null, InputOption::VALUE_REQUIRED, 'On what row (not id) to start', 2)
+            ->addOption(
+                'organisation',
+                'o',
+                InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
+                'What github organisations should be searched for contributions?',
+                array('mozilla', 'mozilla-b2g')
+            );
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -41,7 +48,7 @@ class GithubScoreCommand extends Command
 
         $count = 0;
         $githubData = array();
-        for ($i = 1; $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
+        for ($i = $input->getOption('offset'); $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
             $cell = $spreadSheet['cellFeed']->findCell($input->getOption('column') . $i);
 
             $userName = '';

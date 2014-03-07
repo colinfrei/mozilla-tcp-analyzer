@@ -15,7 +15,8 @@ class BugzillaCountCommand extends Command
             ->setName('colinfrei:tcp:bugzilla-count')
             ->setDescription('Get the number of bugs a user has participated in by bugzilla email')
             ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
-            ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the bugzilla email address', 'AF');
+            ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the bugzilla email address', 'AF')
+            ->addOption('offset', null, InputOption::VALUE_REQUIRED, 'On what row (not id) to start', 2);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -27,7 +28,7 @@ class BugzillaCountCommand extends Command
         $bugzillaCookie = $this->getApplication()->getService('config')['bugzilla']['cookie'];
 
         $count = 0;
-        for ($i = 1; $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
+        for ($i = $input->getOption('offset'); $i <= $spreadSheet['worksheet']->getRowCount(); $i++) {
             $cell = $spreadSheet['cellFeed']->findCell($input->getOption('column') . $i);
 
             $email = '';
