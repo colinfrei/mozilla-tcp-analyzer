@@ -16,6 +16,9 @@ class GoogleSpreadsheetServiceProvider implements ServiceProviderInterface
                 $client = new Client($app['config']['spreadsheet']['googleAccessKey'], $app['buzz']);
                 /** @var Worksheet[] $worksheets */
                 $worksheets = $client->loadWorksheetsByUrl($app['config']['spreadsheet']['worksheetUrl']);
+                if (count($worksheets) < 1) {
+                    throw new \LogicException('Could not fetch worksheet. Either the Google access key or the worksheet URL are incorrect.');
+                }
 
                 $worksheet = $worksheets[0];
 
