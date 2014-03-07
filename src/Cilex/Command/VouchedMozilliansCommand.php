@@ -14,7 +14,7 @@ class VouchedMozilliansCommand extends Command
         $this
             ->setName('colinfrei:tcp:vouched-mozillians')
             ->setDescription('Check what users are vouched mozillians')
-            ->addOption('count', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
+            ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
             ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the github account url', 'AE');
     }
 
@@ -55,7 +55,7 @@ class VouchedMozilliansCommand extends Command
             $output->writeln($userName . "\t" . ($isVouched ? 'YES' : 'NO'));
 
             $count++;
-            if ($input->getOption('count') && $count >= $input->getOption('count')) {
+            if ($input->getOption('limit') && $count >= $input->getOption('limit')) {
                 break;
             }
         }

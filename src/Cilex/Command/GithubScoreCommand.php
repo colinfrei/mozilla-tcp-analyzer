@@ -15,7 +15,7 @@ class GithubScoreCommand extends Command
         $this
             ->setName('colinfrei:tcp:github-score')
             ->setDescription('Get the number of participations a user made in mozilla github repos')
-            ->addOption('count', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
+            ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
             ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the github account url', 'AG')
             ->addOption('organisation', 'o', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED, 'What github organisations should be searched for contributions?', array('mozilla', 'mozilla-b2g'));
     }
@@ -56,7 +56,7 @@ class GithubScoreCommand extends Command
             }
 
             $count++;
-            if ($input->getOption('count') && $count >= $input->getOption('count')) {
+            if ($input->getOption('limit') && $count >= $input->getOption('limit')) {
                 break;
             }
         }

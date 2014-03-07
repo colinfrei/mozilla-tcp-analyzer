@@ -14,7 +14,7 @@ class BugzillaCountCommand extends Command
         $this
             ->setName('colinfrei:tcp:bugzilla-count')
             ->setDescription('Get the number of bugs a user has participated in by bugzilla email')
-            ->addOption('count', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
+            ->addOption('limit', null, InputOption::VALUE_REQUIRED, 'How many rows should be processed')
             ->addOption('column', null, InputOption::VALUE_REQUIRED, 'Which column contains the bugzilla email address', 'AF');
     }
 
@@ -51,7 +51,7 @@ class BugzillaCountCommand extends Command
             }
 
             $count++;
-            if ($input->getOption('count') && $count >= $input->getOption('count')) {
+            if ($input->getOption('limit') && $count >= $input->getOption('limit')) {
                 break;
             }
         }
