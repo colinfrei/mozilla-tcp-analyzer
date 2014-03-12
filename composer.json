@@ -20,6 +20,7 @@
         "kriswallsmith/buzz": "0.10",
         "wunderdata/google-spreadsheet-api": "dev-master",
         "google/apiclient": "dev-master",
-        "knplabs/github-api": "dev-master"
+        "knplabs/github-api": "dev-master",
+        "fabpot/goutte": "1.0.5"
     }
 }
